@@ -1,3 +1,7 @@
+use std::fmt;
+    use std::fmt::Formatter;
+
+
 fn main() {
   let string = format!("This writes formatted text to a String, {}", "like this");
   println!("I can now put it here: {}", string);
@@ -24,8 +28,19 @@ fn main() {
   // i32 represents a signed 32-bit integer, but not sure what it means 
   // with respect to the structure - is it constructor arguments?
   #[allow(dead_code)]
+  #[derive(Debug)]
   struct Structure(i32);
 
   // bellow won't work as `Structure` doesn't implement `std::fmt::Display`
-  // println!("This struct `{}` won't print...", Structure(3)); 
+  println!("This struct `{:?}` wouldn't print with braces...", Structure(3));
+
+  struct Structure2(i32);
+
+  impl fmt::Display for Structure2 {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), std::fmt::Error> {
+      write!(f, "{}", self.0)
+    }
+  }
+
+  println!("This struct `{}` should print with braces...", Structure2(4));
 }
