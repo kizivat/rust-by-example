@@ -25,6 +25,11 @@ fn main() {
   let len = 6;
   println!("{num:>len$}");
 
+  // Rust even checks to make sure the correct number of arguments are used.
+  println!("My name is {0}, {1} {0}", "Bond", "James");
+  // done
+  // FIXME ^ Add the missing argument: "James"
+
   // i32 represents a signed 32-bit integer, but not sure what it means 
   // with respect to the structure - is it constructor arguments?
   #[allow(dead_code)]
@@ -43,4 +48,8 @@ fn main() {
   }
 
   println!("This struct `{}` should print with braces...", Structure2(4));
+
+  let pi = 3.141592;
+  let prec = 3;
+  println!("Pi is roughly {pi:.prec$}", )
 }
